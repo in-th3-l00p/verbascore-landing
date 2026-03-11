@@ -4,6 +4,22 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { ArrowRight } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+
+const fadeUpVariant: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
 
 const content = {
   en: {
@@ -17,7 +33,7 @@ const content = {
       label2: "Bridging the gap between spend & revenue",
       text: "We are an automated platform providing services for modern sales teams. We look forward to meeting your demands. Stay tuned for insights that transform your missed calls into closed opportunities.",
     },
-    marquee: "QA — Coaching — Analytics ",
+    marquee: "QA — Coaching — Analytics",
     info: {
       title1: "How it works",
       list1: [
@@ -53,7 +69,7 @@ const content = {
       label2: "Reducem decalajul dintre cheltuieli și venituri",
       text: "Suntem o platformă automatizată care oferă servicii pentru echipele moderne de vânzări. Așteptăm cu nerăbdare să răspundem cerințelor dumneavoastră. Urmăriți-ne pentru informații care transformă apelurile pierdute în oportunități închise.",
     },
-    marquee: "QA — Antrenament — Analiză — Integrare",
+    marquee: "QA — Antrenament — Analiză",
     info: {
       title1: "Cum funcționează",
       list1: [
@@ -140,36 +156,69 @@ export default function Home() {
           </video>
           <div className={styles.heroGradient} />
           <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>{d.hero.title}</h1>
-            <p className={styles.heroSubtitle}>
+            <motion.h1 
+              className={styles.heroTitle}
+              initial="hidden"
+              animate="visible"
+              variants={fadeUpVariant}
+            >
+              {d.hero.title}
+            </motion.h1>
+            <motion.p 
+              className={styles.heroSubtitle}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               {d.hero.subtitle}
-            </p>
+            </motion.p>
           </div>
         </section>
 
-        <section id="about" className={styles.about}>
+        <motion.section 
+          id="about" 
+          className={styles.about}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUpVariant}
+        >
           <div className={styles.aboutTop}>
             <span>{d.about.label1}</span>
             <span>{d.about.label2}</span>
           </div>
           <p>{d.about.text}</p>
-        </section>
+        </motion.section>
 
-        <section className={styles.imageSection}>
+        <motion.section 
+          className={styles.imageSection}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
+          <div className={styles.fogOverlay} />
           <Image
-            src="/new-middle-image.png"
+            src="/background-image.png"
             alt="Office landscape"
             fill
             className="object-cover"
           />
-        </section>
+        </motion.section>
 
         <section className={styles.marqueeSection}>
           {d.marquee}
         </section>
 
-        <section id="features" className={styles.infoGrid}>
-          <div className={styles.infoCol}>
+        <motion.section 
+          id="features" 
+          className={styles.infoGrid}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.div className={styles.infoCol} variants={fadeUpVariant}>
             <h2 className={styles.infoTitle}>{d.info.title1}</h2>
             <ul className={styles.infoList}>
               {d.info.list1.map((item, i) => (
@@ -179,8 +228,8 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className={styles.infoCol}>
+          </motion.div>
+          <motion.div className={styles.infoCol} variants={fadeUpVariant}>
             <h2 className={styles.infoTitle}>{d.info.title2}</h2>
             <ul className={styles.infoList}>
               {d.info.list2.map((item, i) => (
@@ -190,35 +239,39 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section id="contact" className={styles.twoColContent}>
-          <div className={styles.contentImage}>
+        <motion.section 
+          id="contact" 
+          className={styles.twoColContent}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.div className={styles.contentImage} variants={fadeUpVariant}>
             <Image
               src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80"
               alt="Technology expansion"
               fill
               className="object-cover"
             />
-          </div>
-          <div className={styles.contentBlock}>
+          </motion.div>
+          <motion.div className={styles.contentBlock} variants={fadeUpVariant}>
             <h3>{d.footerSection.title}</h3>
             <p>
               {d.footerSection.text}
               <br /><br />
               <br /><br />
               <span className={styles.socialLinks} style={{ display: "flex", gap: "1rem" }}>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
+                <a href="https://www.linkedin.com/company/verbascore/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
                   {d.footerSection.link1}
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
-                  {d.footerSection.link2}
                 </a>
               </span>
             </p>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
       </main>
 
       <footer className={styles.footer}>

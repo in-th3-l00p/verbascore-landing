@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Verbascore — Automated QA for Sales Calls",
+  title: "Verbascore | next gen sales",
   description:
     "Verbascore is an automated Quality Assurance manager that maximizes the ROI of your leads by analyzing calls, coaching reps, and surfacing performance metrics.",
 };
