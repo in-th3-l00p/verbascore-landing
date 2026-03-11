@@ -156,7 +156,7 @@ export default function Home() {
           </video>
           <div className={styles.heroGradient} />
           <div className={styles.heroContent}>
-            <motion.h1 
+            <motion.h1
               className={styles.heroTitle}
               initial="hidden"
               animate="visible"
@@ -164,7 +164,7 @@ export default function Home() {
             >
               {d.hero.title}
             </motion.h1>
-            <motion.p 
+            <motion.p
               className={styles.heroSubtitle}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -175,8 +175,8 @@ export default function Home() {
           </div>
         </section>
 
-        <motion.section 
-          id="about" 
+        <motion.section
+          id="about"
           className={styles.about}
           initial="hidden"
           whileInView="visible"
@@ -190,7 +190,7 @@ export default function Home() {
           <p>{d.about.text}</p>
         </motion.section>
 
-        <motion.section 
+        <motion.section
           className={styles.imageSection}
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -199,7 +199,7 @@ export default function Home() {
         >
           <div className={styles.fogOverlay} />
           <Image
-            src="/background-image.png"
+            src="/new-middle-image.png"
             alt="Office landscape"
             fill
             className="object-cover"
@@ -210,8 +210,8 @@ export default function Home() {
           {d.marquee}
         </section>
 
-        <motion.section 
-          id="features" 
+        <motion.section
+          id="features"
           className={styles.infoGrid}
           variants={staggerContainer}
           initial="hidden"
@@ -242,8 +242,8 @@ export default function Home() {
           </motion.div>
         </motion.section>
 
-        <motion.section 
-          id="contact" 
+        <motion.section
+          id="contact"
           className={styles.twoColContent}
           initial="hidden"
           whileInView="visible"
@@ -252,7 +252,7 @@ export default function Home() {
         >
           <motion.div className={styles.contentImage} variants={fadeUpVariant}>
             <Image
-              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80"
+              src="/background-image.png"
               alt="Technology expansion"
               fill
               className="object-cover"
@@ -264,9 +264,12 @@ export default function Home() {
               {d.footerSection.text}
               <br /><br />
               <br /><br />
-              <span className={styles.socialLinks} style={{ display: "flex", gap: "1rem" }}>
+              <span className={styles.socialLinks} style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
                 <a href="https://www.linkedin.com/company/verbascore/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
                   {d.footerSection.link1}
+                </a>
+                <a href="https://www.instagram.com/verbascore.app" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
+                  {d.footerSection.link2}
                 </a>
               </span>
             </p>
