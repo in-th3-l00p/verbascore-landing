@@ -174,22 +174,24 @@ function Stats() {
   return (
     <section id="metrics" className="border-b border-border bg-background">
       <div className="mx-auto max-w-7xl px-6 py-20 lg:py-28">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {stats.map((stat) => (
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+          {stats.map((stat, i) => (
             <div
               key={stat.label}
-              className="group rounded-2xl border border-border bg-background p-8 transition-colors hover:border-accent/40"
+              className="group flex flex-col justify-between border-t border-border pt-6"
             >
-              <div className="mb-6 flex items-center justify-between">
-                <p className="text-xs font-medium uppercase tracking-widest text-muted">
-                  {stat.label}
+              <div className="mb-16 flex items-start justify-between">
+                <p className="text-[10px] font-medium uppercase tracking-widest text-muted">
+                  KEY STAT <span className="ml-2 text-muted/40">00{i + 1}</span>
                 </p>
                 <stat.icon className="h-5 w-5 text-muted transition-colors group-hover:text-accent" />
               </div>
-              <p className="mb-2 text-xs text-muted">{stat.sublabel}</p>
-              <p className="text-5xl font-bold tracking-tight text-foreground lg:text-6xl">
-                {stat.value}
-              </p>
+              <div>
+                <p className="mb-4 text-sm text-muted">{stat.label} &rarr;</p>
+                <p className="text-6xl font-light tracking-tighter text-foreground lg:text-[5.5rem]">
+                  {stat.value}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -266,18 +268,23 @@ function Features() {
             Everything you need to close more leads
           </h2>
         </div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
+        
+        <div className="grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature, i) => (
             <div
               key={feature.title}
-              className="group rounded-2xl border border-border bg-background p-8 transition-colors hover:border-accent/40"
+              className="group border-t border-border pt-6"
             >
-              <feature.icon className="mb-4 h-6 w-6 text-accent" />
-              <h3 className="mb-2 text-lg font-semibold text-foreground">
+              <div className="mb-8 flex items-center justify-between">
+                <p className="text-[10px] font-medium uppercase tracking-widest text-muted">
+                  FEATURE <span className="ml-2 text-muted/40">00{i + 1}</span>
+                </p>
+                <feature.icon className="h-5 w-5 text-accent" />
+              </div>
+              <h3 className="mb-4 text-xl font-medium tracking-tight text-foreground">
                 {feature.title}
               </h3>
-              <p className="text-sm leading-relaxed text-muted">
+              <p className="text-base leading-relaxed text-muted">
                 {feature.description}
               </p>
             </div>
