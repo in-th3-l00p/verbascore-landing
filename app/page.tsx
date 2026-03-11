@@ -31,7 +31,6 @@ export default function Home() {
         <nav className={styles.nav}>
           <a href="#about" className={styles.navLink}>about</a>
           <a href="#features" className={styles.navLink}>features</a>
-          <a href="#metrics" className={styles.navLink}>metrics</a>
           <a href="#contact" className={styles.navLink}>contact</a>
         </nav>
         <div className={styles.langSwitch}>
@@ -76,20 +75,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section id="metrics" className={styles.gridSection}>
-          <div className={styles.gridItem}>
-            <span className={styles.gridItemLabel}>Calls analyzed annually</span>
-            <div className={styles.gridItemValue}>120K+</div>
-          </div>
-          <div className={styles.gridItem}>
-            <span className={styles.gridItemLabel}>Revenue recovered</span>
-            <div className={styles.gridItemValue}>$4.2M+</div>
-          </div>
-          <div className={styles.gridItem}>
-            <span className={styles.gridItemLabel}>Script adherence</span>
-            <div className={styles.gridItemValue}>94%</div>
-          </div>
-        </section>
+
 
         <section className={styles.imageSection}>
           <Image
