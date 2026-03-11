@@ -97,7 +97,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+  background: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
   z-index: 1;
 }
 
@@ -208,6 +208,7 @@
   white-space: nowrap;
   overflow: hidden;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
 }
 
 /* Contact / Footer Info */
@@ -333,9 +334,11 @@
     align-items: flex-start;
     gap: 2rem;
   }
+
   .heroSubtitle {
     text-align: left;
   }
+
   .gridSection {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -345,29 +348,37 @@
   .header {
     padding: 1.5rem;
   }
+
   .hero {
     padding: 2rem 1.5rem;
   }
+
   .heroTitle {
     max-width: 100%;
   }
+
   .about {
     padding: 5rem 1.5rem;
   }
+
   .gridSection {
     grid-template-columns: 1fr;
   }
+
   .infoGrid {
     grid-template-columns: 1fr;
     padding: 4rem 1.5rem;
     gap: 4rem;
   }
+
   .twoColContent {
     grid-template-columns: 1fr;
   }
+
   .contentBlock {
     padding: 4rem 1.5rem;
   }
+
   .nav {
     display: none;
   }

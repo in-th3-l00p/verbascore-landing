@@ -5,8 +5,84 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { ArrowRight } from "lucide-react";
 
+const content = {
+  en: {
+    nav: { about: "about", features: "features", contact: "contact" },
+    hero: {
+      title: <>A New &rarr;<br />Generation</>,
+      subtitle: "Automated QA that monitors every call, coaches every rep, and shows you exactly where revenue is won or lost.",
+    },
+    about: {
+      label1: "(About Verbascore)",
+      label2: "Bridging the gap between spend & revenue",
+      text: "We are an automated platform providing services for modern sales teams. We look forward to meeting your demands. Stay tuned for insights that transform your missed calls into closed opportunities.",
+    },
+    marquee: "QA — Coaching — Analytics ",
+    info: {
+      title1: "How it works",
+      list1: [
+        ["01 Connect System", "Plug & play"],
+        ["02 Upload Scripts", "AI processing"],
+        ["03 Get Real-Time QA", "Actionable reports"],
+        ["04 Coach Reps", "Close more"]
+      ],
+      title2: "Core Features",
+      list2: [
+        ["Call Monitoring", "Automatic transcription"],
+        ["Script Adherence", "Instant alerts"],
+        ["Owner Dashboard", "High-level metrics"],
+        ["ROI Tracking", "Attribution mapping"]
+      ],
+    },
+    footerSection: {
+      title: "Verbascore Is Actively Expanding Its Footprint Domestic And Internationally",
+      text: "In industries where every phone call is a potential sale, Verbascore ensures no opportunity slips through the cracks. We help you understand the full picture from ad click to closed deal.",
+      link1: "LinkedIn \u2192",
+      link2: "Instagram \u2192",
+    },
+    footer: "ALL RIGHTS RESERVED."
+  },
+  ro: {
+    nav: { about: "despre", features: "funcționalități", contact: "contact" },
+    hero: {
+      title: <>O Nouă &rarr;<br />Generație</>,
+      subtitle: "QA automatizat care monitorizează fiecare apel, antrenează fiecare reprezentant și îți arată exact unde câștigi sau pierzi venituri.",
+    },
+    about: {
+      label1: "(Despre Verbascore)",
+      label2: "Reducem decalajul dintre cheltuieli și venituri",
+      text: "Suntem o platformă automatizată care oferă servicii pentru echipele moderne de vânzări. Așteptăm cu nerăbdare să răspundem cerințelor dumneavoastră. Urmăriți-ne pentru informații care transformă apelurile pierdute în oportunități închise.",
+    },
+    marquee: "QA — Antrenament — Analiză — Integrare",
+    info: {
+      title1: "Cum funcționează",
+      list1: [
+        ["01 Conectează Sistemul", "Plug & play"],
+        ["02 Încarcă Scripturile", "Procesare AI"],
+        ["03 Obține QA în Timp Real", "Rapoarte acționabile"],
+        ["04 Antrenează Reprezentanții", "Închide mai mult"]
+      ],
+      title2: "Funcționalități de Bază",
+      list2: [
+        ["Monitorizare Apeluri", "Transcriere automată"],
+        ["Respectarea Scriptului", "Alerte instantanee"],
+        ["Panou pentru Proprietari", "Valori la nivel înalt"],
+        ["Urmărirea ROI", "Cartografierea atribuirii"]
+      ],
+    },
+    footerSection: {
+      title: "Verbascore Își Extinde Activ Prezența La Nivel Național Și Internațional",
+      text: "În industriile unde fiecare apel telefonic este o potențială vânzare, Verbascore se asigură că nicio oportunitate nu se pierde. Te ajutăm să înțelegi întreaga imagine, de la clicul pe anunț până la încheierea tranzacției.",
+      link1: "LinkedIn \u2192",
+      link2: "Instagram \u2192",
+    },
+    footer: "TOATE DREPTURILE REZERVATE."
+  }
+};
+
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [lang, setLang] = useState<"en" | "ro">("en");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +91,8 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const d = content[lang];
 
   return (
     <div className={styles.container}>
@@ -29,22 +107,32 @@ export default function Home() {
           VERBASCORE
         </a>
         <nav className={styles.nav}>
-          <a href="#about" className={styles.navLink}>about</a>
-          <a href="#features" className={styles.navLink}>features</a>
-          <a href="#contact" className={styles.navLink}>contact</a>
+          <a href="#about" className={styles.navLink}>{d.nav.about}</a>
+          <a href="#features" className={styles.navLink}>{d.nav.features}</a>
+          <a href="#contact" className={styles.navLink}>{d.nav.contact}</a>
         </nav>
         <div className={styles.langSwitch}>
-          <span>EN</span>
-          <span style={{color: "rgba(255,255,255,0.3)"}}>FR</span>
+          <button
+            onClick={() => setLang("en")}
+            style={{ color: lang === "en" ? "#fff" : "rgba(255,255,255,0.3)", background: "transparent", border: "none", cursor: "pointer", fontSize: "0.875rem" }}
+          >
+            EN
+          </button>
+          <button
+            onClick={() => setLang("ro")}
+            style={{ color: lang === "ro" ? "#fff" : "rgba(255,255,255,0.3)", background: "transparent", border: "none", cursor: "pointer", fontSize: "0.875rem" }}
+          >
+            RO
+          </button>
         </div>
       </header>
 
       <main>
         <section className={styles.hero}>
-          <video 
-            autoPlay 
-            muted 
-            loop 
+          <video
+            autoPlay
+            muted
+            loop
             playsInline
             className={styles.heroVideo}
           >
@@ -52,34 +140,24 @@ export default function Home() {
           </video>
           <div className={styles.heroGradient} />
           <div className={styles.heroContent}>
-            <h1 className={styles.heroTitle}>A New &rarr;<br/>Generation</h1>
+            <h1 className={styles.heroTitle}>{d.hero.title}</h1>
             <p className={styles.heroSubtitle}>
-              Automated QA that monitors every call, coaches every rep, and shows you exactly where revenue is won or lost.
-              <br/><br/>
-              <a href="#contact" className={styles.btnPrimary} style={{marginTop: "1rem"}}>
-                Request Demo <ArrowRight size={16} />
-              </a>
+              {d.hero.subtitle}
             </p>
           </div>
         </section>
 
         <section id="about" className={styles.about}>
           <div className={styles.aboutTop}>
-            <span>(About Verbascore)</span>
-            <span>Bridging the gap between spend &amp; revenue</span>
+            <span>{d.about.label1}</span>
+            <span>{d.about.label2}</span>
           </div>
-          <p>
-            We are excited to be the automation engine for modern sales teams. 
-            We look forward to meeting your demands. Stay tuned for insights that 
-            transform your missed calls into closed opportunities.
-          </p>
+          <p>{d.about.text}</p>
         </section>
-
-
 
         <section className={styles.imageSection}>
           <Image
-            src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&q=80"
+            src="/new-middle-image.png"
             alt="Office landscape"
             fill
             className="object-cover"
@@ -87,55 +165,35 @@ export default function Home() {
         </section>
 
         <section className={styles.marqueeSection}>
-          QA — Coaching — Analytics — Integration
+          {d.marquee}
         </section>
 
         <section id="features" className={styles.infoGrid}>
           <div className={styles.infoCol}>
-            <h2 className={styles.infoTitle}>How it works</h2>
+            <h2 className={styles.infoTitle}>{d.info.title1}</h2>
             <ul className={styles.infoList}>
-              <li>
-                <span>01 Connect System</span>
-                <span>Plug &amp; play</span>
-              </li>
-              <li>
-                <span>02 Upload Scripts</span>
-                <span>AI processing</span>
-              </li>
-              <li>
-                <span>03 Get Real-Time QA</span>
-                <span>Actionable reports</span>
-              </li>
-              <li>
-                <span>04 Coach Reps</span>
-                <span>Close more</span>
-              </li>
+              {d.info.list1.map((item, i) => (
+                <li key={i}>
+                  <span>{item[0]}</span>
+                  <span>{item[1]}</span>
+                </li>
+              ))}
             </ul>
           </div>
           <div className={styles.infoCol}>
-            <h2 className={styles.infoTitle}>Core Features</h2>
+            <h2 className={styles.infoTitle}>{d.info.title2}</h2>
             <ul className={styles.infoList}>
-              <li>
-                <span>Call Monitoring</span>
-                <span>Automatic transcription</span>
-              </li>
-              <li>
-                <span>Script Adherence</span>
-                <span>Instant alerts</span>
-              </li>
-              <li>
-                <span>Owner Dashboard</span>
-                <span>High-level metrics</span>
-              </li>
-              <li>
-                <span>ROI Tracking</span>
-                <span>Attribution mapping</span>
-              </li>
+              {d.info.list2.map((item, i) => (
+                <li key={i}>
+                  <span>{item[0]}</span>
+                  <span>{item[1]}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
 
-        <section className={styles.twoColContent}>
+        <section id="contact" className={styles.twoColContent}>
           <div className={styles.contentImage}>
             <Image
               src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&q=80"
@@ -145,14 +203,19 @@ export default function Home() {
             />
           </div>
           <div className={styles.contentBlock}>
-            <h3>Verbascore Is Actively Expanding Its Footprint Domestic And Internationally</h3>
+            <h3>{d.footerSection.title}</h3>
             <p>
-              In industries where every phone call is a potential sale, Verbascore ensures no opportunity slips through the cracks. We help you understand the full picture from ad click to closed deal.
-              <br/><br/>
-              <br/><br/>
-              <a href="#contact" className={styles.btnPrimary}>
-                Book a demo &rarr;
-              </a>
+              {d.footerSection.text}
+              <br /><br />
+              <br /><br />
+              <span className={styles.socialLinks} style={{ display: "flex", gap: "1rem" }}>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
+                  {d.footerSection.link1}
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={styles.btnPrimary}>
+                  {d.footerSection.link2}
+                </a>
+              </span>
             </p>
           </div>
         </section>
@@ -160,7 +223,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <span>&copy; {new Date().getFullYear()} VERBASCORE</span>
-        <span>ALL RIGHTS RESERVED.</span>
+        <span>{d.footer}</span>
       </footer>
     </div>
   );
