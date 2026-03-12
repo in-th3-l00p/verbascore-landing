@@ -27,6 +27,7 @@ const content = {
     hero: {
       title: <>A New &rarr;<br />Generation</>,
       subtitle: "Automated QA that monitors every call, coaches every rep, and shows you exactly where revenue is won or lost.",
+      pitchDeck: "View Pitch Deck",
     },
     about: {
       label1: "(About Verbascore)",
@@ -63,6 +64,7 @@ const content = {
     hero: {
       title: <>O Nouă &rarr;<br />Generație</>,
       subtitle: "QA automatizat care monitorizează fiecare apel, antrenează fiecare reprezentant și îți arată exact unde câștigi sau pierzi venituri.",
+      pitchDeck: "Vezi Prezentarea",
     },
     about: {
       label1: "(Despre Verbascore)",
@@ -156,14 +158,27 @@ export default function Home() {
           </video>
           <div className={styles.heroGradient} />
           <div className={styles.heroContent}>
-            <motion.h1
-              className={styles.heroTitle}
-              initial="hidden"
-              animate="visible"
-              variants={fadeUpVariant}
-            >
-              {d.hero.title}
-            </motion.h1>
+            <div className={styles.heroLeft}>
+              <motion.h1
+                className={styles.heroTitle}
+                initial="hidden"
+                animate="visible"
+                variants={fadeUpVariant}
+              >
+                {d.hero.title}
+              </motion.h1>
+              <motion.a
+                href="https://docs.google.com/presentation/d/1VyDs_cvQJWqRJUJejxqwz4nCHIBdj0CP5WglpyMLmCU/edit?slide=id.p1#slide=id.p1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.btnPrimary}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                {d.hero.pitchDeck} <ArrowRight size={16} />
+              </motion.a>
+            </div>
             <motion.p
               className={styles.heroSubtitle}
               initial={{ opacity: 0, x: 20 }}
